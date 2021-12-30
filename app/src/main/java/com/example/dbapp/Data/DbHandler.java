@@ -1,11 +1,11 @@
 package com.example.dbapp.Data;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
-
+import com.example.dbapp.model.Contacts;
 import com.example.dbapp.params.Params;
 
 public class DbHandler extends SQLiteOpenHelper  {
@@ -26,6 +26,21 @@ public class DbHandler extends SQLiteOpenHelper  {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    public void addContact(Contacts contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Params.KEY_NAME, contact.getName());
+        values.put(Params.KEY_PHONE, contact.getContactNumber());
+
+
+        db.insert(Params.TABLE_NAME, null, values);
+        Log.d("Database", "Successfully inserted");
+        db.close();
+
 
     }
 }

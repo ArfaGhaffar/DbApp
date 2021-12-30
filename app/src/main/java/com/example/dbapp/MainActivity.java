@@ -3,8 +3,10 @@ package com.example.dbapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.dbapp.Data.DbHandler;
+import com.example.dbapp.model.Contacts;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -15,6 +17,18 @@ public class MainActivity extends AppCompatActivity {
 
 
         DbHandler db = new DbHandler(MainActivity.this);
+
+        Contacts Ahmad = new Contacts();
+        Contacts Ali = new Contacts();
+
+        Ahmad.setContactNumber("9090909090");
+        Ahmad.setName("Ahmad Khan");
+        Ali.setContactNumber("9090459090");
+        Ali.setName("Ali Asif");
+
+        db.addContact(Ahmad);
+        db.addContact(Ali);
+
 
     }
 }
