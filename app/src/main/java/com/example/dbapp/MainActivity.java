@@ -8,6 +8,8 @@ import android.util.Log;
 import com.example.dbapp.Data.DbHandler;
 import com.example.dbapp.model.Contacts;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -28,6 +30,15 @@ public class MainActivity extends AppCompatActivity {
 
         db.addContact(Ahmad);
         db.addContact(Ali);
+
+        List<Contacts> allContacts = db.getAllContacts();
+        for(Contacts contact: allContacts){
+            Log.d("Database", "\nId: " + contact.getId() + "\n" +
+                    "Name: " + contact.getName() + "\n"+
+                    "Phone Number: " + contact.getContactNumber() + "\n" );
+
+
+        }
 
 
     }

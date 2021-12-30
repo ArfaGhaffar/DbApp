@@ -1,12 +1,16 @@
 package com.example.dbapp.Data;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.dbapp.model.Contacts;
 import com.example.dbapp.params.Params;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DbHandler extends SQLiteOpenHelper  {
 
@@ -42,5 +46,26 @@ public class DbHandler extends SQLiteOpenHelper  {
         db.close();
 
 
+    }
+
+    public List<Contacts> getAllContacts(){
+        List<Contacts> contactList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Generate the query to read from the database
+        String select = "SELECT * FROM " + Params.TABLE_NAME;
+        Cursor cursor = db.rawQuery(select, null);
+
+        //Loop through now
+        if(cursor.moveToFirst()){
+            do{
+                Contacts contact = new Contacts();
+                contact.setId(Integer.parseInt(cursor.getString(0)));
+                contact.setName(cursor.getString(1));
+                contact.setContactNumber(cursor.getString(2));
+                contactList.add(contact);
+            }while(cursor.moveToNext());
+        }
+        return contactList;
     }
 }
