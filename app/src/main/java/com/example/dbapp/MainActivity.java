@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
 
         List<Contacts> allContacts = db.getAllContacts();
         for(Contacts contact: allContacts){
-            Log.d("Database", "\nId: " + contact.getId() + "\n" +
+            Log.d("Database class", "\nId: " + contact.getId() + "\n" +
                     "Name: " + contact.getName() + "\n"+
                     "Phone Number: " + contact.getContactNumber() + "\n" );
 
