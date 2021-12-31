@@ -52,11 +52,9 @@ public class DbHandler extends SQLiteOpenHelper  {
         List<Contacts> contactList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
-        // Generate the query to read from the database
         String select = "SELECT * FROM " + Params.TABLE_NAME;
         Cursor cursor = db.rawQuery(select, null);
 
-        //Loop through now
         if(cursor.moveToFirst()){
             do{
                 Contacts contact = new Contacts();
@@ -67,5 +65,16 @@ public class DbHandler extends SQLiteOpenHelper  {
             }while(cursor.moveToNext());
         }
         return contactList;
+    }
+
+    public int updateContact(Contacts contact){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(Params.KEY_NAME, contact.getName());
+        values.put(Params.KEY_PHONE, contact.getContactNumber());
+
+        return db.update(Params.TABLE_NAME, values, Params.KEY_ID + "=?",
+                new String[]{String.valueOf(contact.getId())});
     }
 }
