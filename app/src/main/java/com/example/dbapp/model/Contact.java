@@ -1,6 +1,6 @@
 package com.example.dbapp.model;
 
-public class Contacts {
+public class Contact {
     private int id;
     private  String name;
 
@@ -30,18 +30,18 @@ public class Contacts {
 
     private  String contactNumber;
 
-    public Contacts(int id, String name, String contactNumber) {
+    public Contact(int id, String name, String contactNumber) {
         this.id = id;
         this.name = name;
         this.contactNumber = contactNumber;
     }
 
-    public Contacts( String name, String contactNumber) {
+    public Contact(String name, String contactNumber) {
         this.name = name;
         this.contactNumber = contactNumber;
     }
 
-    public Contacts() {
+    public Contact() {
 
     }
 
