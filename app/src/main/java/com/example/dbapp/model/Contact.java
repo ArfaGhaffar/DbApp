@@ -3,6 +3,7 @@ package com.example.dbapp.model;
 public class Contact {
     private int id;
     private  String name;
+    private  String contactNumber;
 
     public int getId() {
         return id;
@@ -28,7 +29,7 @@ public class Contact {
         this.contactNumber = contactNumber;
     }
 
-    private  String contactNumber;
+
 
     public Contact(int id, String name, String contactNumber) {
         this.id = id;
@@ -44,6 +45,8 @@ public class Contact {
     public Contact() {
 
     }
+
+
 
 
 

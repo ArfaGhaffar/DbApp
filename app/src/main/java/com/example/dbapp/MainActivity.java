@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+        int images[] = {R.drawable.contacts,R.drawable.contacts,R.drawable.contacts,R.drawable.contacts,R.drawable.contacts};
         DbHandler db = new DbHandler(MainActivity.this);
 
         Contact harry = new Contact();
@@ -29,27 +30,32 @@ public class MainActivity extends AppCompatActivity {
         db.addContact(harry);
 
 
-        Contact larry = new Contact();
+       Contact larry = new Contact();
         larry.setContactNumber("9090459090");
         larry.setName("Larry");
         db.addContact(larry);
 
-        ArrayList<String> contacts = new ArrayList<>();
+       List<String> c1 = new ArrayList<>();
+        List<String> c2 = new ArrayList<>();
          listView = findViewById(R.id.listView);
-
 
 
         List<Contact> allContacts = db.getAllContacts();
         for(Contact contact: allContacts){
 
-            Log.d("Database", "\nId: " + contact.getId() + "\n" +
-                    "Name: " + contact.getName() + "\n"+
-                    "Phone Number: " + contact.getContactNumber() + "\n" );
-            contacts.add(contact.getName() + " (" + contact.getContactNumber() + ")");
+             c1.add(contact.getName());
+            c2.add(contact.getContactNumber());
         }
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, contacts);
-        listView.setAdapter(arrayAdapter);
+       // String[] mTitle =String{};
+       // String[] mDescription ={};
+        String[] mTitle = new String[ c1.size() ];
+        c1.toArray(mTitle);
+        String[] mDescription = new String[ c2.size() ];
+        c2.toArray(mDescription);
+
+        MyAdapter adapter = new MyAdapter(this, mTitle, mDescription);
+        listView.setAdapter(adapter);
 
         }
 
